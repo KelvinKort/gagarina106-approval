@@ -216,10 +216,23 @@
           <div class="preview-grid">
             <div class="subcard">
               <h3>Канал отправки</h3>
-              <div class="chip-row">
-                <span class="chip chip-active">Telegram</span>
-                <span class="chip">WhatsApp</span>
-                <span class="chip">SMS</span>
+              <div class="channel-grid">
+                <label class="channel-option channel-option-active">
+                  <input type="radio" name="delivery-channel" value="telegram" checked />
+                  <span>Telegram</span>
+                </label>
+                <label class="channel-option">
+                  <input type="radio" name="delivery-channel" value="whatsapp" />
+                  <span>WhatsApp</span>
+                </label>
+                <label class="channel-option">
+                  <input type="radio" name="delivery-channel" value="sms" />
+                  <span>SMS</span>
+                </label>
+                <label class="channel-option">
+                  <input type="radio" name="delivery-channel" value="phone" />
+                  <span>По телефону</span>
+                </label>
               </div>
             </div>
 
@@ -240,6 +253,10 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div id="channel-note" class="inline-note">
+            Telegram выбран как основной канал. Клиент получит сообщение со ссылкой на страницу согласования.
           </div>
 
           <label class="field-label" for="message-template">Текст сообщения клиенту</label>

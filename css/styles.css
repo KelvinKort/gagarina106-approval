@@ -410,13 +410,15 @@ h3 {
   margin-bottom: 16px;
 }
 
-.chip-row {
+.chip-row,
+.channel-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.chip {
+.chip,
+.channel-option {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -427,7 +429,19 @@ h3 {
   color: var(--text-soft);
 }
 
-.chip-active {
+.channel-option {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.channel-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip-active,
+.channel-option-active {
   background: var(--primary-light);
   border-color: rgba(255, 102, 0, 0.3);
   color: #ffb17a;

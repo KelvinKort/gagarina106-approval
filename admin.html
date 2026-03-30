@@ -37,7 +37,7 @@
             <strong>1</strong>
           </div>
           <div>
-            <span class="summary-label">Нужны уточнения</span>
+            <span class="summary-label">По телефону</span>
             <strong>1</strong>
           </div>
         </section>
@@ -54,7 +54,7 @@
                 <tr>
                   <th>Заказ</th>
                   <th>Клиент</th>
-                  <th>Авто</th>
+                  <th>Канал</th>
                   <th>Сумма</th>
                   <th>Статус</th>
                   <th>Следующий шаг</th>
@@ -64,7 +64,7 @@
                 <tr class="is-active">
                   <td>#1548</td>
                   <td>Павел Покровский</td>
-                  <td>BMW X5</td>
+                  <td>Telegram</td>
                   <td>11 600 ₽</td>
                   <td><span class="badge badge-question">Частично согласовано</span></td>
                   <td>Уточнить перенос стойки</td>
@@ -72,7 +72,7 @@
                 <tr>
                   <td>#1543</td>
                   <td>Ирина Смирнова</td>
-                  <td>Kia Rio</td>
+                  <td>WhatsApp</td>
                   <td>6 800 ₽</td>
                   <td><span class="badge badge-success">Согласовано</span></td>
                   <td>Запустить работы</td>
@@ -80,10 +80,10 @@
                 <tr>
                   <td>#1539</td>
                   <td>Алексей Фролов</td>
-                  <td>VW Transporter</td>
+                  <td>Телефон</td>
                   <td>22 400 ₽</td>
-                  <td><span class="badge badge-alert">Ожидает ответа</span></td>
-                  <td>Проверить до 18:00</td>
+                  <td><span class="badge badge-alert">Согласовано по звонку</span></td>
+                  <td>Зафиксировать в заказе</td>
                 </tr>
               </tbody>
             </table>
@@ -92,18 +92,18 @@
 
         <section class="card case-details">
           <div class="section-head">
-            <h2>Карточка согласования #1548</h2>
-            <span class="badge badge-question">Частичное согласование</span>
+            <h2>Карточка согласования #1539</h2>
+            <span class="badge badge-alert">Согласовано по телефону</span>
           </div>
 
           <div class="detail-grid">
             <div>
               <span class="summary-label">Клиент</span>
-              <strong>Павел Покровский</strong>
+              <strong>Алексей Фролов</strong>
             </div>
             <div>
               <span class="summary-label">Канал</span>
-              <strong>Telegram</strong>
+              <strong>Телефон</strong>
             </div>
             <div>
               <span class="summary-label">Мастер</span>
@@ -111,25 +111,25 @@
             </div>
             <div>
               <span class="summary-label">Последняя активность</span>
-              <strong>15:24</strong>
+              <strong>16:05</strong>
             </div>
           </div>
 
           <div class="admin-panels">
             <div class="subcard">
-              <h3>Что согласовано</h3>
+              <h3>Результат звонка</h3>
               <ul class="feature-list compact-list">
-                <li>замена передних тормозных дисков и колодок — согласовано;</li>
-                <li>тормозные диски и колодки — согласованы;</li>
-                <li>замена стойки и стойка — временно отложены.</li>
+                <li>клиенту не отправляли ссылку, так как нет Telegram;</li>
+                <li>согласование проведено по телефону в 16:05;</li>
+                <li>результат зафиксирован сотрудником вручную.</li>
               </ul>
             </div>
 
             <div class="subcard subcard-accent">
-              <h3>Комментарий клиента</h3>
+              <h3>Что сказал клиент</h3>
               <p>
-                Давайте сейчас сделаем тормоза, а стойку перенесём на следующий
-                визит.
+                Согласен на замену сальника и работу по герметизации. Просит
+                после ремонта прислать итоговую сумму в SMS.
               </p>
             </div>
           </div>
@@ -138,39 +138,53 @@
             <div class="timeline-item">
               <span></span>
               <div>
-                <strong>15:10 — отправлено клиенту</strong>
-                <p class="muted">Ссылка ушла в Telegram через будущего бота.</p>
+                <strong>15:40 — подготовлено согласование</strong>
+                <p class="muted">В карточке выбран канал «по телефону».</p>
               </div>
             </div>
             <div class="timeline-item">
               <span></span>
               <div>
-                <strong>15:14 — клиент открыл страницу</strong>
-                <p class="muted">Ознакомился с работами, запчастями и суммой.</p>
+                <strong>16:05 — звонок клиенту</strong>
+                <p class="muted">Сотрудник озвучил работы, запчасти и сумму.</p>
               </div>
             </div>
             <div class="timeline-item">
               <span></span>
               <div>
-                <strong>15:24 — частично согласовал работы</strong>
-                <p class="muted">Новая сумма к подтверждению: 11 600 ₽.</p>
+                <strong>16:08 — решение зафиксировано</strong>
+                <p class="muted">Статус обновлён как «согласовано по звонку».</p>
               </div>
             </div>
           </div>
 
           <section class="subcard form-card">
-            <h3>Следующее действие сотрудника</h3>
-            <label class="field-label" for="staff-note">Комментарий клиенту</label>
+            <h3>Фиксация телефонного согласования</h3>
+            <div class="form-grid">
+              <div>
+                <label class="field-label" for="phone-result">Результат</label>
+                <select id="phone-result" class="input input-select">
+                  <option selected>Согласовано по звонку</option>
+                  <option>Частично согласовано по звонку</option>
+                  <option>Отказ по звонку</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="phone-confirmed-by">Кто зафиксировал</label>
+                <input id="phone-confirmed-by" class="input" type="text" value="Андрей" />
+              </div>
+            </div>
+            <label class="field-label" for="staff-note">Комментарий по разговору</label>
             <textarea
               id="staff-note"
               class="textarea"
               rows="4"
-              placeholder="Например: приняли, выполняем тормозную систему, по стойке зафиксируем перенос на следующий визит."
-            ></textarea>
+              placeholder="Кратко зафиксируйте, что именно согласовал клиент по телефону."
+            >Клиент подтвердил работы по телефону. После завершения ремонта просит отправить итоговую сумму в SMS.</textarea>
             <div class="actions-stack actions-row-mobile">
-              <button class="button button-primary" type="button">Подтвердить частичное согласование</button>
-              <button class="button button-secondary" type="button">Пересчитать смету</button>
-              <button class="button button-ghost" type="button">Позвонить клиенту</button>
+              <button class="button button-primary" type="button">Сохранить результат звонка</button>
+              <button class="button button-secondary" type="button">Отправить SMS-подтверждение</button>
+              <button class="button button-ghost" type="button">Открыть карточку клиента</button>
             </div>
           </section>
         </section>

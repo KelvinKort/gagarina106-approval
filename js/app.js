@@ -9,6 +9,9 @@ const summaryParts = document.getElementById('summary-parts');
 const summaryTotal = document.getElementById('summary-total');
 const decisionBadge = document.getElementById('decision-badge');
 const partialNote = document.getElementById('partial-note');
+const channelInputs = document.querySelectorAll('input[name="delivery-channel"]');
+const messageTemplate = document.getElementById('message-template');
+const channelNote = document.getElementById('channel-note');
 
 const formatPrice = (value) => `${new Intl.NumberFormat('ru-RU').format(value)} ₽`;
 
@@ -16,6 +19,24 @@ const showFeedback = (node, text, className) => {
   if (!node) return;
   node.textContent = text;
   node.className = `feedback ${className}`;
+};
+
+const channelMessages = {
+  telegram:
+    'Павел, добрый день. По вашему автомобилю подготовили дополнительную смету по заказ-наряду №1548. Посмотрите работы, запчасти и итоговую стоимость по ссылке. Там можно сразу согласовать, задать вопрос или отказаться.',
+  whatsapp:
+    'Павел, добрый день. Подготовили дополнительную смету по вашему автомобилю. Направляем ссылку для просмотра и согласования работ и запчастей. Если удобно, можете сразу ответить после просмотра.',
+  sms:
+    'ГАГАРИНА 106: по вашему авто подготовили доп. смету по заказ-наряду №1548. Откройте ссылку для просмотра и согласования.',
+  phone:
+    'Клиенту будет озвучена смета по телефону. После звонка сотрудник вручную зафиксирует результат согласования и комментарий клиента.'
+};
+
+const channelNotes = {
+  telegram: 'Telegram выбран как основной канал. Клиент получит сообщение со ссылкой на страницу согласования.',
+  whatsapp: 'WhatsApp выбран как канал отправки. Клиенту уйдёт короткое сообщение со ссылкой на страницу согласования.',
+  sms: 'SMS выбран как резервный канал. Клиент получит короткий текст и ссылку на страницу согласования.',
+  phone: 'Выбран сценарий без мессенджеров. Сотрудник согласует работы по телефону и вручную зафиксирует результат в системе.'
 };
 
 const alphaDemoData = {
@@ -28,9 +49,25 @@ const alphaDemoData = {
   mileage: '148 000 км',
   deadline: 'сегодня до 18:00',
   description:
-    'Из Альфа-Авто подтянут заказ-наряд и автомобиль. В ходе осмотра дополнительно выявили износ передних тормозных дисков и колодок, а также запотевание правой передней стойки. По тормозам рекомендуем не откладывать, по стойке можно согласовать перенос на следующий визит.',
-  message:
-    'Павел, добрый день. По заказ-наряду AA-1548 из Альфа-Авто подготовили дополнительную смету. Посмотрите работы, запчасти и итоговую стоимость по ссылке. Там можно сразу согласовать, задать вопрос или отказаться.'
+    'Из Альфа-Авто подтянут заказ-наряд и автомобиль. В ходе осмотра дополнительно выявили износ передних тормозных дисков и колодок, а также запотевание правой передней стойки. По тормозам рекомендуем не откладывать, по стойке можно согласовать перенос на следующий визит.'
+};
+
+const updateChannelPreview = () => {
+  if (!channelInputs.length) return;
+
+  const active = [...channelInputs].find((input) => input.checked)?.value || 'telegram';
+
+  channelInputs.forEach((input) => {
+    input.closest('.channel-option')?.classList.toggle('channel-option-active', input.checked);
+  });
+
+  if (messageTemplate) {
+    messageTemplate.value = channelMessages[active];
+  }
+
+  if (channelNote) {
+    channelNote.textContent = channelNotes[active];
+  }
 };
 
 const populateAlphaDemo = () => {
@@ -44,7 +81,6 @@ const populateAlphaDemo = () => {
     mileage: alphaDemoData.mileage,
     deadline: alphaDemoData.deadline,
     'problem-description': alphaDemoData.description,
-    'message-template': alphaDemoData.message,
     'alpha-order-number': alphaDemoData.orderNumber,
     'alpha-client-phone': '+7 911 477-51-06'
   };
@@ -53,6 +89,8 @@ const populateAlphaDemo = () => {
     const node = document.getElementById(id);
     if (node) node.value = value;
   });
+
+  updateChannelPreview();
 };
 
 const updateSelectableState = () => {
@@ -98,6 +136,14 @@ const updateSelectableState = () => {
     partialNote.textContent = `Выбрана часть позиций. Новый итог: ${formatPrice(total)}.`;
   }
 };
+
+if (channelInputs.length) {
+  channelInputs.forEach((input) => {
+    input.addEventListener('change', updateChannelPreview);
+  });
+
+  updateChannelPreview();
+}
 
 if (itemSelectors.length) {
   itemSelectors.forEach((input) => {
@@ -185,11 +231,12 @@ if (actionButtons.length) {
       }
 
       if (action === 'send-preview') {
-        showFeedback(
-          createFeedback,
-          'Согласование создано. В рабочей версии система сформирует ссылку, сохранит карточку и отправит сообщение клиенту в Telegram.',
-          'question'
-        );
+        const active = [...channelInputs].find((input) => input.checked)?.value || 'telegram';
+        const text =
+          active === 'phone'
+            ? 'Карточка создана для согласования по телефону. В рабочей версии сотрудник позвонит клиенту и вручную зафиксирует результат разговора.'
+            : 'Согласование создано. В рабочей версии система сформирует ссылку, сохранит карточку и отправит сообщение клиенту по выбранному каналу.';
+        showFeedback(createFeedback, text, 'question');
       }
 
       if (action === 'import-alpha' || action === 'load-demo-alpha') {
