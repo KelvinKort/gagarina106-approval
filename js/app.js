@@ -18,6 +18,43 @@ const showFeedback = (node, text, className) => {
   node.className = `feedback ${className}`;
 };
 
+const alphaDemoData = {
+  orderNumber: 'AA-1548',
+  manager: 'Андрей',
+  clientName: 'Павел Покровский',
+  clientPhone: '+7 911 477-51-06 / @pavelpokrovskiy',
+  carModel: 'BMW X5',
+  carPlate: 'А123АА39',
+  mileage: '148 000 км',
+  deadline: 'сегодня до 18:00',
+  description:
+    'Из Альфа-Авто подтянут заказ-наряд и автомобиль. В ходе осмотра дополнительно выявили износ передних тормозных дисков и колодок, а также запотевание правой передней стойки. По тормозам рекомендуем не откладывать, по стойке можно согласовать перенос на следующий визит.',
+  message:
+    'Павел, добрый день. По заказ-наряду AA-1548 из Альфа-Авто подготовили дополнительную смету. Посмотрите работы, запчасти и итоговую стоимость по ссылке. Там можно сразу согласовать, задать вопрос или отказаться.'
+};
+
+const populateAlphaDemo = () => {
+  const map = {
+    'order-number': alphaDemoData.orderNumber,
+    'manager-name': alphaDemoData.manager,
+    'client-name': alphaDemoData.clientName,
+    'client-phone': alphaDemoData.clientPhone,
+    'car-model': alphaDemoData.carModel,
+    'car-plate': alphaDemoData.carPlate,
+    mileage: alphaDemoData.mileage,
+    deadline: alphaDemoData.deadline,
+    'problem-description': alphaDemoData.description,
+    'message-template': alphaDemoData.message,
+    'alpha-order-number': alphaDemoData.orderNumber,
+    'alpha-client-phone': '+7 911 477-51-06'
+  };
+
+  Object.entries(map).forEach(([id, value]) => {
+    const node = document.getElementById(id);
+    if (node) node.value = value;
+  });
+};
+
 const updateSelectableState = () => {
   if (!itemSelectors.length) return;
 
@@ -152,6 +189,15 @@ if (actionButtons.length) {
           createFeedback,
           'Согласование создано. В рабочей версии система сформирует ссылку, сохранит карточку и отправит сообщение клиенту в Telegram.',
           'question'
+        );
+      }
+
+      if (action === 'import-alpha' || action === 'load-demo-alpha') {
+        populateAlphaDemo();
+        showFeedback(
+          createFeedback,
+          'Демо-импорт из 1С:Альфа-Авто выполнен. Поля заказа и текст клиенту автозаполнены на основе заказ-наряда.',
+          'success'
         );
       }
     });

@@ -373,7 +373,8 @@ h3 {
 
 .form-grid,
 .builder-grid,
-.preview-grid {
+.preview-grid,
+.import-grid {
   display: grid;
   gap: 14px;
 }
@@ -401,6 +402,11 @@ h3 {
 
 .preview-grid {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-bottom: 16px;
+}
+
+.import-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   margin-bottom: 16px;
 }
 

@@ -23,6 +23,38 @@
       </header>
 
       <main class="create-layout">
+        <section class="card form-section form-import-card">
+          <div class="section-head">
+            <h2>Импорт из Альфа-Авто</h2>
+            <span class="muted">Демо-поток</span>
+          </div>
+
+          <p class="muted">
+            В рабочей версии здесь будет поиск заказ-наряда из 1С:Альфа-Авто по
+            номеру или списку активных заказов с автозаполнением формы.
+          </p>
+
+          <div class="import-grid">
+            <div>
+              <label class="field-label" for="alpha-order-number">Номер заказ-наряда из Альфа-Авто</label>
+              <input id="alpha-order-number" class="input" type="text" value="AA-1548" />
+            </div>
+            <div>
+              <label class="field-label" for="alpha-client-phone">Телефон клиента</label>
+              <input id="alpha-client-phone" class="input" type="text" value="+7 911 477-51-06" />
+            </div>
+          </div>
+
+          <div class="actions-stack actions-row-mobile">
+            <button class="button button-primary" data-action="import-alpha">Импортировать заказ-наряд</button>
+            <button class="button button-ghost" data-action="load-demo-alpha">Загрузить демо-данные</button>
+          </div>
+
+          <div class="inline-note">
+            Демо-сценарий покажет, как форма будет автоматически наполняться из 1С:Альфа-Авто.
+          </div>
+        </section>
+
         <section class="card form-section">
           <div class="section-head">
             <h2>Данные заказ-наряда</h2>
@@ -86,7 +118,7 @@
             <span class="muted">Шаг 3</span>
           </div>
 
-          <div class="builder-list">
+          <div class="builder-list" id="builder-list">
             <article class="builder-row">
               <div class="builder-grid">
                 <input class="input" type="text" value="Замена передних тормозных дисков и колодок" />
