@@ -210,7 +210,27 @@
 
           <div class="actions-stack actions-row-mobile">
             <button class="button button-secondary" type="button">+ Добавить позицию</button>
-            <button class="button button-ghost" type="button">+ Добавить фото</button>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <div class="section-head">
+            <h2>Фото проблемы / диагностики</h2>
+            <span class="muted">Шаг 4</span>
+          </div>
+
+          <p class="muted">
+            Для демо можно подгрузить до 3 фото с устройства. Они появятся в
+            превью ниже и отобразятся на клиентской странице согласования.
+          </p>
+
+          <label class="button button-ghost upload-button" for="photo-upload-input">
+            + Добавить фото
+          </label>
+          <input id="photo-upload-input" class="visually-hidden" type="file" accept="image/*" multiple />
+
+          <div id="create-photo-preview" class="upload-preview-grid">
+            <div class="photo-placeholder small-placeholder">Фото пока не добавлены</div>
           </div>
         </section>
 

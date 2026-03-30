@@ -307,6 +307,51 @@ h3 {
   padding: 16px;
 }
 
+.small-placeholder {
+  min-height: 120px;
+}
+
+.upload-button {
+  width: fit-content;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.upload-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.upload-preview-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.upload-preview-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.upload-preview-meta {
+  padding: 10px 12px;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
 .priority-grid,
 .admin-panels {
   display: grid;

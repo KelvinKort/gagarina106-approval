@@ -17,6 +17,10 @@ const createLaborTotal = document.getElementById('create-labor-total');
 const createPartsTotal = document.getElementById('create-parts-total');
 const createGrandTotal = document.getElementById('create-grand-total');
 const builderRows = document.querySelectorAll('.builder-row');
+const photoUploadInput = document.getElementById('photo-upload-input');
+const createPhotoPreview = document.getElementById('create-photo-preview');
+
+let demoUploadedPhotos = [];
 
 const formatPrice = (value) => `${new Intl.NumberFormat('ru-RU').format(value)} ₽`;
 const parseNumber = (value) => Number(String(value).replace(/\s+/g, '').replace(',', '.')) || 0;
@@ -85,6 +89,39 @@ const loadDemoData = () => {
   }
 };
 
+const renderCreatePhotoPreview = (photos = []) => {
+  if (!createPhotoPreview) return;
+  if (!photos.length) {
+    createPhotoPreview.innerHTML = '<div class="photo-placeholder small-placeholder">Фото пока не добавлены</div>';
+    return;
+  }
+  createPhotoPreview.innerHTML = photos
+    .map(
+      (photo, index) => `
+        <div class="upload-preview-card">
+          <img src="${photo.dataUrl}" alt="Фото ${index + 1}" />
+          <div class="upload-preview-meta">Фото ${index + 1}</div>
+        </div>
+      `
+    )
+    .join('');
+};
+
+const renderApprovalPhotos = (photos = []) => {
+  const grid = document.getElementById('approval-photo-grid');
+  if (!grid || !photos.length) return;
+  grid.innerHTML = photos
+    .map(
+      (photo, index) => `
+        <div class="upload-preview-card">
+          <img src="${photo.dataUrl}" alt="Диагностика ${index + 1}" />
+          <div class="upload-preview-meta">Фото ${index + 1}</div>
+        </div>
+      `
+    )
+    .join('');
+};
+
 const setDemoStatePatch = (patch) => {
   const current = loadDemoData();
   if (!current) return null;
@@ -137,6 +174,7 @@ const getCurrentCreateState = () => {
     laborTotal,
     partsTotal,
     grandTotal: laborTotal + partsTotal,
+    photos: demoUploadedPhotos,
     approvalState: defaultApprovalState
   };
 };
@@ -188,7 +226,6 @@ const applyApprovalBadge = (approvalState) => {
 const applyApprovalDemoData = () => {
   const data = loadDemoData();
   if (!data) return;
-
   const orderLabel = document.getElementById('approval-order-label');
   const carTitle = document.getElementById('approval-car-title');
   const clientMeta = document.getElementById('approval-client-meta');
@@ -205,33 +242,20 @@ const applyApprovalDemoData = () => {
   if (summaryLabor) summaryLabor.textContent = formatPrice(data.laborTotal);
   if (summaryParts) summaryParts.textContent = formatPrice(data.partsTotal);
   if (summaryTotal) summaryTotal.textContent = formatPrice(data.grandTotal);
-
-  if (laborList && data.laborItems?.length) {
-    laborList.innerHTML = data.laborItems.map((item) => buildSelectableItem(item, 'labor')).join('');
-  }
-  if (partsList && data.partItems?.length) {
-    partsList.innerHTML = data.partItems.map((item) => buildSelectableItem(item, 'part')).join('');
-  }
+  if (laborList && data.laborItems?.length) laborList.innerHTML = data.laborItems.map((item) => buildSelectableItem(item, 'labor')).join('');
+  if (partsList && data.partItems?.length) partsList.innerHTML = data.partItems.map((item) => buildSelectableItem(item, 'part')).join('');
   if (laborCount) laborCount.textContent = `${data.laborItems?.length || 0} позиции`;
   if (partsCount) partsCount.textContent = `${data.partItems?.length || 0} позиции`;
-
+  renderApprovalPhotos(data.photos || []);
   applyApprovalBadge(data.approvalState || defaultApprovalState);
 };
 
 const buildAdminStatus = (data) => {
   const state = data.approvalState || defaultApprovalState;
-  if (state.status === 'approved') {
-    return { badge: 'badge-success', label: 'Согласовано', step: 'Запустить работы' };
-  }
-  if (state.status === 'partial') {
-    return { badge: 'badge-question', label: 'Частично согласовано', step: 'Уточнить отложенные позиции' };
-  }
-  if (state.status === 'question') {
-    return { badge: 'badge-question', label: 'Нужны уточнения', step: 'Ответить клиенту' };
-  }
-  if (state.status === 'declined') {
-    return { badge: 'badge-alert', label: 'Отказ', step: 'Зафиксировать отказ' };
-  }
+  if (state.status === 'approved') return { badge: 'badge-success', label: 'Согласовано', step: 'Запустить работы' };
+  if (state.status === 'partial') return { badge: 'badge-question', label: 'Частично согласовано', step: 'Уточнить отложенные позиции' };
+  if (state.status === 'question') return { badge: 'badge-question', label: 'Нужны уточнения', step: 'Ответить клиенту' };
+  if (state.status === 'declined') return { badge: 'badge-alert', label: 'Отказ', step: 'Зафиксировать отказ' };
   return { badge: 'badge-alert', label: data.channel === 'phone' ? 'Ожидает звонка / фиксации' : 'Ожидает ответа', step: data.channel === 'phone' ? 'Позвонить клиенту' : 'Отправить клиенту ссылку' };
 };
 
@@ -313,7 +337,7 @@ const applyAdminDemoData = () => {
     } else if (data.channel === 'phone') {
       statusList.innerHTML = `<li>ссылка клиенту не отправляется, выбран сценарий согласования по телефону;</li><li>сотруднику нужно позвонить и озвучить работы на ${formatPrice(data.laborTotal)} и запчасти на ${formatPrice(data.partsTotal)};</li><li>после звонка результат фиксируется вручную.</li>`;
     } else {
-      statusList.innerHTML = `<li>подготовлено новое согласование по каналу ${data.channel};</li><li>клиент: ${data.clientName}, автомобиль: ${data.carModel};</li><li>общий итог сметы: ${formatPrice(data.grandTotal)}.</li>`;
+      statusList.innerHTML = `<li>подготовлено новое согласование по каналу ${data.channel};</li><li>клиент: ${data.clientName}, автомобиль: ${data.carModel};</li><li>общий итог сметы: ${formatPrice(data.grandTotal)};</li><li>фото приложены: ${data.photos?.length || 0}.</li>`;
     }
   }
 
@@ -460,6 +484,22 @@ if (builderRows.length) {
   updateCreateTotalsAndMessage();
 }
 
+if (photoUploadInput) {
+  photoUploadInput.addEventListener('change', async (event) => {
+    const files = [...(event.target.files || [])].slice(0, 3);
+    const readers = files.map(
+      (file) =>
+        new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve({ name: file.name, dataUrl: reader.result });
+          reader.readAsDataURL(file);
+        })
+    );
+    demoUploadedPhotos = await Promise.all(readers);
+    renderCreatePhotoPreview(demoUploadedPhotos);
+  });
+}
+
 if (channelInputs.length) {
   channelInputs.forEach((input) => {
     input.addEventListener('change', updateChannelPreview);
@@ -471,6 +511,7 @@ applyApprovalDemoData();
 applyAdminDemoData();
 bindSelectableItems();
 updateSelectableState();
+renderCreatePhotoPreview(demoUploadedPhotos);
 
 if (actionButtons.length) {
   actionButtons.forEach((button) => {
@@ -538,7 +579,7 @@ if (actionButtons.length) {
       if (action === 'save-draft') {
         const state = getCurrentCreateState();
         saveDemoData(state);
-        showFeedback(createFeedback, 'Черновик сохранён. Демо-данные записаны и будут показаны на клиентской странице и в админке.', 'success');
+        showFeedback(createFeedback, 'Черновик сохранён. Демо-данные, включая фото, записаны и будут показаны на клиентской странице и в админке.', 'success');
         return;
       }
 
@@ -548,7 +589,7 @@ if (actionButtons.length) {
         const active = state.channel;
         const text = active === 'phone'
           ? 'Карточка создана для согласования по телефону. Демо-данные сохранены: открой админку и клиентскую страницу — увидишь тот же кейс.'
-          : 'Согласование создано. Демо-данные сохранены: открой клиентскую страницу и админку — там будет этот же кейс.';
+          : 'Согласование создано. Демо-данные, включая фото, сохранены: открой клиентскую страницу и админку — там будет этот же кейс.';
         showFeedback(createFeedback, text, 'question');
         return;
       }
