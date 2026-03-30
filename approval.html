@@ -56,10 +56,36 @@
           <h3>Что обнаружили</h3>
           <p>
             В ходе осмотра выявили износ передних тормозных дисков и колодок, а
-            также запотевание правой передней стойки. Рекомендуем выполнить
-            работы сейчас, чтобы не ухудшать управляемость и эффективность
-            торможения.
+            также запотевание правой передней стойки. По тормозам рекомендуем не
+            откладывать: это влияет на эффективность торможения и безопасность.
+            По стойке ремонт можно делать в этом визите, чтобы не возвращаться
+            повторно.
           </p>
+        </section>
+
+        <section class="card card-accent">
+          <div class="section-head">
+            <h3>Приоритет работ</h3>
+            <span class="muted">Пояснение для клиента</span>
+          </div>
+          <div class="priority-grid">
+            <div class="priority-box priority-box-required">
+              <span class="priority-mark">Сейчас</span>
+              <strong>Замена тормозных дисков и колодок</strong>
+              <p class="muted">
+                Рекомендуем выполнить в текущем визите. Это напрямую связано с
+                эффективностью торможения.
+              </p>
+            </div>
+            <div class="priority-box priority-box-recommended">
+              <span class="priority-mark">Рекомендуется</span>
+              <strong>Замена передней правой стойки</strong>
+              <p class="muted">
+                Пока возможно выполнить без срочности, но лучше совместить с
+                текущим ремонтом и не приезжать повторно.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section class="card">
@@ -115,6 +141,18 @@
           </div>
         </section>
 
+        <section class="card info-note">
+          <div class="section-head">
+            <h3>Что будет, если отложить</h3>
+            <span class="muted">Без нагнетания</span>
+          </div>
+          <ul class="feature-list compact-list">
+            <li>по тормозной системе может увеличиться износ и ухудшиться эффективность торможения;</li>
+            <li>по стойке может усилиться раскачка и ухудшиться комфорт управления;</li>
+            <li>если сделать сейчас, можно избежать повторного визита по части этих работ.</li>
+          </ul>
+        </section>
+
         <section class="card photo-card">
           <div class="section-head">
             <h3>Фото и комментарий мастера</h3>
@@ -134,20 +172,39 @@
         <section class="card action-card">
           <h3>Ваше решение</h3>
           <p class="muted">
-            В рабочей версии после нажатия ответ будет сохранён и отправлен
-            сотруднику сервиса.
+            В рабочей версии ответ будет сохранён и сразу передан сотруднику
+            сервиса.
           </p>
           <div class="actions-stack actions-row-mobile">
             <button class="button button-primary" data-action="approve">
               Согласовать
             </button>
-            <button class="button button-secondary" data-action="question">
+            <button class="button button-secondary" data-action="question-toggle">
               Задать вопрос
             </button>
             <button class="button button-danger" data-action="decline">
               Отказаться
             </button>
           </div>
+
+          <div id="question-panel" class="question-panel" hidden>
+            <label class="field-label" for="question-text">Ваш вопрос или комментарий</label>
+            <textarea
+              id="question-text"
+              class="textarea"
+              rows="4"
+              placeholder="Например: можно ли пока заменить только тормоза, а стойку сделать позже?"
+            ></textarea>
+            <div class="actions-stack actions-row-mobile">
+              <button class="button button-primary" data-action="submit-question">
+                Отправить вопрос
+              </button>
+              <button class="button button-ghost" data-action="cancel-question">
+                Отмена
+              </button>
+            </div>
+          </div>
+
           <div id="approval-feedback" class="feedback" aria-live="polite"></div>
         </section>
       </main>

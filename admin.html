@@ -60,7 +60,7 @@
                   <th>Авто</th>
                   <th>Сумма</th>
                   <th>Статус</th>
-                  <th>Отправлено</th>
+                  <th>Следующий шаг</th>
                 </tr>
               </thead>
               <tbody>
@@ -69,8 +69,8 @@
                   <td>Павел Покровский</td>
                   <td>BMW X5</td>
                   <td>14 100 ₽</td>
-                  <td><span class="badge badge-alert">Ожидает ответа</span></td>
-                  <td>сегодня, 15:10</td>
+                  <td><span class="badge badge-question">Нужны уточнения</span></td>
+                  <td>Ответить клиенту</td>
                 </tr>
                 <tr>
                   <td>#1543</td>
@@ -78,15 +78,15 @@
                   <td>Kia Rio</td>
                   <td>6 800 ₽</td>
                   <td><span class="badge badge-success">Согласовано</span></td>
-                  <td>сегодня, 13:40</td>
+                  <td>Запустить работы</td>
                 </tr>
                 <tr>
                   <td>#1539</td>
                   <td>Алексей Фролов</td>
                   <td>VW Transporter</td>
                   <td>22 400 ₽</td>
-                  <td><span class="badge badge-question">Нужны уточнения</span></td>
-                  <td>сегодня, 11:05</td>
+                  <td><span class="badge badge-alert">Ожидает ответа</span></td>
+                  <td>Проверить до 18:00</td>
                 </tr>
               </tbody>
             </table>
@@ -96,7 +96,7 @@
         <section class="card case-details">
           <div class="section-head">
             <h2>Карточка согласования #1548</h2>
-            <span class="badge badge-alert">Открыто клиентом</span>
+            <span class="badge badge-question">Клиент задал вопрос</span>
           </div>
 
           <div class="detail-grid">
@@ -113,8 +113,27 @@
               <strong>Андрей</strong>
             </div>
             <div>
-              <span class="summary-label">Открыл страницу</span>
-              <strong>15:14</strong>
+              <span class="summary-label">Последняя активность</span>
+              <strong>15:18</strong>
+            </div>
+          </div>
+
+          <div class="admin-panels">
+            <div class="subcard">
+              <h3>Статус клиента</h3>
+              <ul class="feature-list compact-list">
+                <li>согласование отправлено в Telegram в 15:10;</li>
+                <li>клиент открыл страницу в 15:14;</li>
+                <li>в 15:18 клиент задал вопрос по составу работ.</li>
+              </ul>
+            </div>
+
+            <div class="subcard subcard-accent">
+              <h3>Вопрос клиента</h3>
+              <p>
+                Можно ли сейчас заменить только тормозные диски и колодки, а
+                стойку сделать в следующий визит?
+              </p>
             </div>
           </div>
 
@@ -123,7 +142,7 @@
               <span></span>
               <div>
                 <strong>15:10 — отправлено клиенту</strong>
-                <p class="muted">Через Telegram-бота будет уходить ссылка на согласование.</p>
+                <p class="muted">Ссылка ушла в Telegram через будущего бота.</p>
               </div>
             </div>
             <div class="timeline-item">
@@ -133,20 +152,30 @@
                 <p class="muted">Ознакомился с работами, запчастями и суммой.</p>
               </div>
             </div>
-            <div class="timeline-item muted-item">
+            <div class="timeline-item">
               <span></span>
               <div>
-                <strong>Ожидается решение</strong>
-                <p class="muted">Следующее действие — согласование, вопрос или отказ.</p>
+                <strong>15:18 — получен вопрос клиента</strong>
+                <p class="muted">Нужно дать комментарий мастера и обновить статус.</p>
               </div>
             </div>
           </div>
 
-          <div class="actions-stack actions-row-mobile">
-            <button class="button button-primary" type="button">Отправить повторно</button>
-            <button class="button button-secondary" type="button">Открыть клиентскую страницу</button>
-            <button class="button button-ghost" type="button">Позвонить клиенту</button>
-          </div>
+          <section class="subcard form-card">
+            <h3>Следующее действие сотрудника</h3>
+            <label class="field-label" for="staff-note">Комментарий клиенту</label>
+            <textarea
+              id="staff-note"
+              class="textarea"
+              rows="4"
+              placeholder="Например: да, тормоза можно сделать сейчас, стойку перенести на следующий визит."
+            ></textarea>
+            <div class="actions-stack actions-row-mobile">
+              <button class="button button-primary" type="button">Отправить ответ клиенту</button>
+              <button class="button button-secondary" type="button">Обновить смету</button>
+              <button class="button button-ghost" type="button">Позвонить клиенту</button>
+            </div>
+          </section>
         </section>
       </main>
     </div>
