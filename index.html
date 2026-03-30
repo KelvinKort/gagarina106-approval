@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ГАГАРИНА 106 — прототип согласования</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="shell shell-home">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Черновой MVP</p>
+          <h1>Система согласования работ и запчастей</h1>
+          <p class="lead">
+            Прототип клиентской страницы и внутренней панели для автотехцентра
+            «ГАГАРИНА 106».
+          </p>
+        </div>
+        <span class="badge badge-warm">GitHub Pages ready</span>
+      </header>
+
+      <main class="home-grid">
+        <section class="card card-accent">
+          <h2>Что уже можно проверить</h2>
+          <ul class="feature-list">
+            <li>Подачу доп. сметы клиенту</li>
+            <li>Разделение на работы и запчасти</li>
+            <li>Показ срочных и рекомендованных позиций</li>
+            <li>Сценарий согласования / отказа / вопроса</li>
+            <li>Черновую админку со статусами</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Демо-сценарии</h2>
+          <div class="actions-stack">
+            <a class="button button-primary" href="./approval.html">
+              Открыть страницу клиента
+            </a>
+            <a class="button button-secondary" href="./admin.html">
+              Открыть внутреннюю панель
+            </a>
+          </div>
+        </section>
+
+        <section class="card card-wide">
+          <h2>Логика MVP</h2>
+          <div class="steps">
+            <article>
+              <span>1</span>
+              <h3>Создание согласования</h3>
+              <p>
+                Сотрудник собирает список работ, запчастей, комментарий и фото.
+              </p>
+            </article>
+            <article>
+              <span>2</span>
+              <h3>Отправка клиенту</h3>
+              <p>
+                Telegram-бот в будущем отправляет ссылку на персональную страницу.
+              </p>
+            </article>
+            <article>
+              <span>3</span>
+              <h3>Ответ клиента</h3>
+              <p>
+                Клиент подтверждает, задаёт вопрос или отказывается. Статус
+                фиксируется в системе.
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

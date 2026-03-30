@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Админка — ГАГАРИНА 106</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="shell shell-admin">
+      <header class="topbar topbar-compact">
+        <div>
+          <p class="eyebrow">Внутренняя панель</p>
+          <h1>Активные согласования</h1>
+        </div>
+        <a class="button button-ghost" href="./index.html">← Назад</a>
+      </header>
+
+      <main class="admin-layout">
+        <section class="card stats-grid">
+          <div>
+            <span class="summary-label">Всего активных</span>
+            <strong>6</strong>
+          </div>
+          <div>
+            <span class="summary-label">Ждут ответа</span>
+            <strong>3</strong>
+          </div>
+          <div>
+            <span class="summary-label">Согласовано сегодня</span>
+            <strong>2</strong>
+          </div>
+          <div>
+            <span class="summary-label">Нужны уточнения</span>
+            <strong>1</strong>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h2>Список кейсов</h2>
+            <button class="button button-secondary" type="button">+ Новое согласование</button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="cases-table">
+              <thead>
+                <tr>
+                  <th>Заказ</th>
+                  <th>Клиент</th>
+                  <th>Авто</th>
+                  <th>Сумма</th>
+                  <th>Статус</th>
+                  <th>Отправлено</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="is-active">
+                  <td>#1548</td>
+                  <td>Павел Покровский</td>
+                  <td>BMW X5</td>
+                  <td>14 100 ₽</td>
+                  <td><span class="badge badge-alert">Ожидает ответа</span></td>
+                  <td>сегодня, 15:10</td>
+                </tr>
+                <tr>
+                  <td>#1543</td>
+                  <td>Ирина Смирнова</td>
+                  <td>Kia Rio</td>
+                  <td>6 800 ₽</td>
+                  <td><span class="badge badge-success">Согласовано</span></td>
+                  <td>сегодня, 13:40</td>
+                </tr>
+                <tr>
+                  <td>#1539</td>
+                  <td>Алексей Фролов</td>
+                  <td>VW Transporter</td>
+                  <td>22 400 ₽</td>
+                  <td><span class="badge badge-question">Нужны уточнения</span></td>
+                  <td>сегодня, 11:05</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card case-details">
+          <div class="section-head">
+            <h2>Карточка согласования #1548</h2>
+            <span class="badge badge-alert">Открыто клиентом</span>
+          </div>
+
+          <div class="detail-grid">
+            <div>
+              <span class="summary-label">Клиент</span>
+              <strong>Павел Покровский</strong>
+            </div>
+            <div>
+              <span class="summary-label">Канал</span>
+              <strong>Telegram</strong>
+            </div>
+            <div>
+              <span class="summary-label">Мастер</span>
+              <strong>Андрей</strong>
+            </div>
+            <div>
+              <span class="summary-label">Открыл страницу</span>
+              <strong>15:14</strong>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <span></span>
+              <div>
+                <strong>15:10 — отправлено клиенту</strong>
+                <p class="muted">Через Telegram-бота будет уходить ссылка на согласование.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span></span>
+              <div>
+                <strong>15:14 — клиент открыл страницу</strong>
+                <p class="muted">Ознакомился с работами, запчастями и суммой.</p>
+              </div>
+            </div>
+            <div class="timeline-item muted-item">
+              <span></span>
+              <div>
+                <strong>Ожидается решение</strong>
+                <p class="muted">Следующее действие — согласование, вопрос или отказ.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions-stack actions-row-mobile">
+            <button class="button button-primary" type="button">Отправить повторно</button>
+            <button class="button button-secondary" type="button">Открыть клиентскую страницу</button>
+            <button class="button button-ghost" type="button">Позвонить клиенту</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

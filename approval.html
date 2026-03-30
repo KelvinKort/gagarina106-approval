@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Согласование — ГАГАРИНА 106</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="shell shell-approval">
+      <header class="topbar topbar-compact">
+        <div>
+          <p class="eyebrow">Страница клиента</p>
+          <h1>Согласование дополнительных работ</h1>
+        </div>
+        <a class="button button-ghost" href="./index.html">← Назад</a>
+      </header>
+
+      <main class="approval-layout">
+        <section class="card hero-card">
+          <div class="hero-head">
+            <div>
+              <p class="eyebrow">Заказ-наряд №1548</p>
+              <h2>BMW X5 · А123АА39</h2>
+              <p class="muted">Клиент: Павел Покровский · Пробег: 148 000 км</p>
+            </div>
+            <span class="badge badge-alert">Ожидает согласования</span>
+          </div>
+
+          <div class="summary-grid">
+            <div>
+              <span class="summary-label">Работы</span>
+              <strong>4 500 ₽</strong>
+            </div>
+            <div>
+              <span class="summary-label">Запчасти</span>
+              <strong>9 600 ₽</strong>
+            </div>
+            <div>
+              <span class="summary-label">Итого</span>
+              <strong>14 100 ₽</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>Что обнаружили</h3>
+          <p>
+            В ходе осмотра выявили износ передних тормозных дисков и колодок, а
+            также запотевание правой передней стойки. Рекомендуем выполнить
+            работы сейчас, чтобы не ухудшать управляемость и эффективность
+            торможения.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h3>Работы</h3>
+            <span class="muted">2 позиции</span>
+          </div>
+          <div class="item-list">
+            <article class="line-item">
+              <div>
+                <div class="line-title">Замена передних тормозных дисков и колодок</div>
+                <p class="muted">Обязательно · 1 комплект</p>
+              </div>
+              <strong>3 000 ₽</strong>
+            </article>
+            <article class="line-item">
+              <div>
+                <div class="line-title">Замена передней правой стойки</div>
+                <p class="muted">Рекомендуется · 1 шт.</p>
+              </div>
+              <strong>1 500 ₽</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h3>Запчасти</h3>
+            <span class="muted">3 позиции</span>
+          </div>
+          <div class="item-list">
+            <article class="line-item">
+              <div>
+                <div class="line-title">Тормозные диски передние</div>
+                <p class="muted">2 шт.</p>
+              </div>
+              <strong>6 400 ₽</strong>
+            </article>
+            <article class="line-item">
+              <div>
+                <div class="line-title">Колодки тормозные передние</div>
+                <p class="muted">1 комплект</p>
+              </div>
+              <strong>2 200 ₽</strong>
+            </article>
+            <article class="line-item">
+              <div>
+                <div class="line-title">Стойка передняя правая</div>
+                <p class="muted">1 шт.</p>
+              </div>
+              <strong>1 000 ₽</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="card photo-card">
+          <div class="section-head">
+            <h3>Фото и комментарий мастера</h3>
+            <span class="muted">Демо</span>
+          </div>
+          <div class="photo-grid">
+            <div class="photo-placeholder">Фото тормозных дисков</div>
+            <div class="photo-placeholder">Фото стойки</div>
+          </div>
+          <p class="muted">
+            Комментарий мастера: на дисках выраженная выработка, стойка начала
+            потеть. Лучше согласовать в текущем визите, чтобы не возвращаться к
+            ремонту повторно.
+          </p>
+        </section>
+
+        <section class="card action-card">
+          <h3>Ваше решение</h3>
+          <p class="muted">
+            В рабочей версии после нажатия ответ будет сохранён и отправлен
+            сотруднику сервиса.
+          </p>
+          <div class="actions-stack actions-row-mobile">
+            <button class="button button-primary" data-action="approve">
+              Согласовать
+            </button>
+            <button class="button button-secondary" data-action="question">
+              Задать вопрос
+            </button>
+            <button class="button button-danger" data-action="decline">
+              Отказаться
+            </button>
+          </div>
+          <div id="approval-feedback" class="feedback" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
