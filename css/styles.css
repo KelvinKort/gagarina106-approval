@@ -54,7 +54,7 @@ button {
 
 .brand-block {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 18px;
 }
 
@@ -63,12 +63,11 @@ button {
 }
 
 .brand-logo {
-  width: clamp(112px, 15vw, 180px);
+  width: clamp(112px, 14vw, 168px);
   height: auto;
   display: block;
-  border-radius: 14px;
-  background: #ffffff;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  mix-blend-mode: screen;
+  filter: brightness(1.06) contrast(1.04);
 }
 
 .topbar-compact {
@@ -413,14 +412,19 @@ h3 {
 
   .topbar,
   .hero-head,
-  .section-head,
-  .brand-block {
+  .section-head {
     flex-direction: column;
     align-items: flex-start;
   }
 
+  .brand-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
   .brand-logo {
-    width: min(220px, 100%);
+    width: min(180px, 70vw);
   }
 
   .actions-row-mobile .button,
