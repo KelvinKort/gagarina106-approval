@@ -26,19 +26,19 @@
         <section class="card stats-grid">
           <div>
             <span class="summary-label">Всего активных</span>
-            <strong>6</strong>
+            <strong id="admin-stats-total">6</strong>
           </div>
           <div>
             <span class="summary-label">Ждут ответа</span>
-            <strong>2</strong>
+            <strong id="admin-stats-pending">2</strong>
           </div>
           <div>
             <span class="summary-label">Частично согласовано</span>
-            <strong>1</strong>
+            <strong id="admin-stats-partial">1</strong>
           </div>
           <div>
             <span class="summary-label">По телефону</span>
-            <strong>1</strong>
+            <strong id="admin-stats-phone">1</strong>
           </div>
         </section>
 
@@ -60,7 +60,7 @@
                   <th>Следующий шаг</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="admin-case-table-body">
                 <tr class="is-active">
                   <td>#1548</td>
                   <td>Павел Покровский</td>
@@ -92,33 +92,33 @@
 
         <section class="card case-details">
           <div class="section-head">
-            <h2>Карточка согласования #1539</h2>
-            <span class="badge badge-alert">Согласовано по телефону</span>
+            <h2 id="admin-case-title">Карточка согласования #1539</h2>
+            <span class="badge badge-alert" id="admin-case-badge">Согласовано по телефону</span>
           </div>
 
           <div class="detail-grid">
             <div>
               <span class="summary-label">Клиент</span>
-              <strong>Алексей Фролов</strong>
+              <strong id="admin-client-name">Алексей Фролов</strong>
             </div>
             <div>
               <span class="summary-label">Канал</span>
-              <strong>Телефон</strong>
+              <strong id="admin-channel">Телефон</strong>
             </div>
             <div>
               <span class="summary-label">Мастер</span>
-              <strong>Андрей</strong>
+              <strong id="admin-manager">Андрей</strong>
             </div>
             <div>
               <span class="summary-label">Последняя активность</span>
-              <strong>16:05</strong>
+              <strong id="admin-last-activity">16:05</strong>
             </div>
           </div>
 
           <div class="admin-panels">
             <div class="subcard">
-              <h3>Результат звонка</h3>
-              <ul class="feature-list compact-list">
+              <h3>Результат / статус</h3>
+              <ul class="feature-list compact-list" id="admin-status-list">
                 <li>клиенту не отправляли ссылку, так как нет Telegram;</li>
                 <li>согласование проведено по телефону в 16:05;</li>
                 <li>результат зафиксирован сотрудником вручную.</li>
@@ -126,15 +126,15 @@
             </div>
 
             <div class="subcard subcard-accent">
-              <h3>Что сказал клиент</h3>
-              <p>
+              <h3>Комментарий / пояснение</h3>
+              <p id="admin-commentary">
                 Согласен на замену сальника и работу по герметизации. Просит
                 после ремонта прислать итоговую сумму в SMS.
               </p>
             </div>
           </div>
 
-          <div class="timeline">
+          <div class="timeline" id="admin-timeline">
             <div class="timeline-item">
               <span></span>
               <div>
@@ -159,7 +159,7 @@
           </div>
 
           <section class="subcard form-card">
-            <h3>Фиксация телефонного согласования</h3>
+            <h3>Фиксация результата</h3>
             <div class="form-grid">
               <div>
                 <label class="field-label" for="phone-result">Результат</label>
@@ -182,13 +182,15 @@
               placeholder="Кратко зафиксируйте, что именно согласовал клиент по телефону."
             >Клиент подтвердил работы по телефону. После завершения ремонта просит отправить итоговую сумму в SMS.</textarea>
             <div class="actions-stack actions-row-mobile">
-              <button class="button button-primary" type="button">Сохранить результат звонка</button>
-              <button class="button button-secondary" type="button">Отправить SMS-подтверждение</button>
+              <button class="button button-primary" type="button">Сохранить результат</button>
+              <button class="button button-secondary" type="button">Отправить подтверждение</button>
               <button class="button button-ghost" type="button">Открыть карточку клиента</button>
             </div>
           </section>
         </section>
       </main>
     </div>
+
+    <script src="./js/app.js"></script>
   </body>
 </html>

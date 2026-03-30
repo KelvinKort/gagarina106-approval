@@ -26,9 +26,9 @@
         <section class="card hero-card">
           <div class="hero-head">
             <div>
-              <p class="eyebrow">Заказ-наряд №1548</p>
-              <h2>BMW X5 · А123АА39</h2>
-              <p class="muted">Клиент: Павел Покровский · Пробег: 148 000 км</p>
+              <p class="eyebrow" id="approval-order-label">Заказ-наряд №1548</p>
+              <h2 id="approval-car-title">BMW X5 · А123АА39</h2>
+              <p class="muted" id="approval-client-meta">Клиент: Павел Покровский · Пробег: 148 000 км</p>
             </div>
             <span class="badge badge-alert" id="decision-badge">Ожидает согласования</span>
           </div>
@@ -51,7 +51,7 @@
 
         <section class="card">
           <h3>Что обнаружили</h3>
-          <p>
+          <p id="approval-description">
             В ходе осмотра выявили износ передних тормозных дисков и колодок, а
             также запотевание правой передней стойки. По тормозам рекомендуем не
             откладывать: это влияет на эффективность торможения и безопасность.
@@ -65,7 +65,7 @@
             <h3>Приоритет работ</h3>
             <span class="muted">Пояснение для клиента</span>
           </div>
-          <div class="priority-grid">
+          <div class="priority-grid" id="priority-grid">
             <div class="priority-box priority-box-required">
               <span class="priority-mark">Сейчас</span>
               <strong>Замена тормозных дисков и колодок</strong>
@@ -99,9 +99,9 @@
         <section class="card">
           <div class="section-head">
             <h3>Работы</h3>
-            <span class="muted">2 позиции</span>
+            <span class="muted" id="approval-labor-count">2 позиции</span>
           </div>
-          <div class="item-list selectable-list">
+          <div class="item-list selectable-list" id="approval-labor-list">
             <article class="line-item selectable-item" data-price="3000" data-group="labor">
               <label class="item-check">
                 <input type="checkbox" class="item-selector" checked />
@@ -130,9 +130,9 @@
         <section class="card">
           <div class="section-head">
             <h3>Запчасти</h3>
-            <span class="muted">3 позиции</span>
+            <span class="muted" id="approval-parts-count">3 позиции</span>
           </div>
-          <div class="item-list selectable-list">
+          <div class="item-list selectable-list" id="approval-parts-list">
             <article class="line-item selectable-item" data-price="6400" data-group="part">
               <label class="item-check">
                 <input type="checkbox" class="item-selector" checked />
