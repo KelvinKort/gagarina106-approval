@@ -52,6 +52,25 @@ button {
   margin-bottom: 28px;
 }
 
+.brand-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.brand-block-compact {
+  align-items: center;
+}
+
+.brand-logo {
+  width: clamp(112px, 15vw, 180px);
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
 .topbar-compact {
   align-items: center;
 }
@@ -394,9 +413,14 @@ h3 {
 
   .topbar,
   .hero-head,
-  .section-head {
+  .section-head,
+  .brand-block {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .brand-logo {
+    width: min(220px, 100%);
   }
 
   .actions-row-mobile .button,
