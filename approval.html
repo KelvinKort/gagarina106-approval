@@ -30,21 +30,21 @@
               <h2>BMW X5 · А123АА39</h2>
               <p class="muted">Клиент: Павел Покровский · Пробег: 148 000 км</p>
             </div>
-            <span class="badge badge-alert">Ожидает согласования</span>
+            <span class="badge badge-alert" id="decision-badge">Ожидает согласования</span>
           </div>
 
-          <div class="summary-grid">
+          <div class="summary-grid" id="summary-grid">
             <div>
               <span class="summary-label">Работы</span>
-              <strong>4 500 ₽</strong>
+              <strong id="summary-labor">4 500 ₽</strong>
             </div>
             <div>
               <span class="summary-label">Запчасти</span>
-              <strong>9 600 ₽</strong>
+              <strong id="summary-parts">9 600 ₽</strong>
             </div>
             <div>
               <span class="summary-label">Итого</span>
-              <strong>14 100 ₽</strong>
+              <strong id="summary-total">14 100 ₽</strong>
             </div>
           </div>
         </section>
@@ -85,20 +85,39 @@
           </div>
         </section>
 
+        <section class="card partial-approval-card">
+          <div class="section-head">
+            <h3>Можно согласовать не всё сразу</h3>
+            <span class="muted">Черновой сценарий</span>
+          </div>
+          <p class="muted">
+            Если хотите, можно подтвердить только часть работ. Например, сделать
+            тормоза сейчас, а стойку перенести на следующий визит.
+          </p>
+        </section>
+
         <section class="card">
           <div class="section-head">
             <h3>Работы</h3>
             <span class="muted">2 позиции</span>
           </div>
-          <div class="item-list">
-            <article class="line-item">
+          <div class="item-list selectable-list">
+            <article class="line-item selectable-item" data-price="3000" data-group="labor">
+              <label class="item-check">
+                <input type="checkbox" class="item-selector" checked />
+                <span class="checkmark"></span>
+              </label>
               <div>
                 <div class="line-title">Замена передних тормозных дисков и колодок</div>
                 <p class="muted">Обязательно · 1 комплект</p>
               </div>
               <strong>3 000 ₽</strong>
             </article>
-            <article class="line-item">
+            <article class="line-item selectable-item" data-price="1500" data-group="labor">
+              <label class="item-check">
+                <input type="checkbox" class="item-selector" checked />
+                <span class="checkmark"></span>
+              </label>
               <div>
                 <div class="line-title">Замена передней правой стойки</div>
                 <p class="muted">Рекомендуется · 1 шт.</p>
@@ -113,22 +132,34 @@
             <h3>Запчасти</h3>
             <span class="muted">3 позиции</span>
           </div>
-          <div class="item-list">
-            <article class="line-item">
+          <div class="item-list selectable-list">
+            <article class="line-item selectable-item" data-price="6400" data-group="part">
+              <label class="item-check">
+                <input type="checkbox" class="item-selector" checked />
+                <span class="checkmark"></span>
+              </label>
               <div>
                 <div class="line-title">Тормозные диски передние</div>
                 <p class="muted">2 шт.</p>
               </div>
               <strong>6 400 ₽</strong>
             </article>
-            <article class="line-item">
+            <article class="line-item selectable-item" data-price="2200" data-group="part">
+              <label class="item-check">
+                <input type="checkbox" class="item-selector" checked />
+                <span class="checkmark"></span>
+              </label>
               <div>
                 <div class="line-title">Колодки тормозные передние</div>
                 <p class="muted">1 комплект</p>
               </div>
               <strong>2 200 ₽</strong>
             </article>
-            <article class="line-item">
+            <article class="line-item selectable-item" data-price="1000" data-group="part">
+              <label class="item-check">
+                <input type="checkbox" class="item-selector" checked />
+                <span class="checkmark"></span>
+              </label>
               <div>
                 <div class="line-title">Стойка передняя правая</div>
                 <p class="muted">1 шт.</p>
@@ -174,7 +205,7 @@
           </p>
           <div class="actions-stack actions-row-mobile">
             <button class="button button-primary" data-action="approve">
-              Согласовать
+              Согласовать выбранное
             </button>
             <button class="button button-secondary" data-action="question-toggle">
               Задать вопрос
@@ -182,6 +213,10 @@
             <button class="button button-danger" data-action="decline">
               Отказаться
             </button>
+          </div>
+
+          <div id="partial-note" class="inline-note">
+            Сейчас выбраны все позиции. Если снять часть пунктов, система покажет частичное согласование.
           </div>
 
           <div id="question-panel" class="question-panel" hidden>
