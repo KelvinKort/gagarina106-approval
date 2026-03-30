@@ -1,4 +1,5 @@
 const feedback = document.getElementById('approval-feedback');
+const createFeedback = document.getElementById('create-feedback');
 const questionPanel = document.getElementById('question-panel');
 const questionText = document.getElementById('question-text');
 const actionButtons = document.querySelectorAll('[data-action]');
@@ -11,10 +12,10 @@ const partialNote = document.getElementById('partial-note');
 
 const formatPrice = (value) => `${new Intl.NumberFormat('ru-RU').format(value)} ₽`;
 
-const showFeedback = (text, className) => {
-  if (!feedback) return;
-  feedback.textContent = text;
-  feedback.className = `feedback ${className}`;
+const showFeedback = (node, text, className) => {
+  if (!node) return;
+  node.textContent = text;
+  node.className = `feedback ${className}`;
 };
 
 const updateSelectableState = () => {
@@ -80,6 +81,7 @@ if (actionButtons.length) {
 
         if (itemSelectors.length && selectedCount > 0 && selectedCount < itemSelectors.length) {
           showFeedback(
+            feedback,
             'Частичное согласование зафиксировано. В рабочей версии сотрудник увидит выбранные позиции, новую сумму и комментарий по отложенным работам.',
             'question'
           );
@@ -87,11 +89,12 @@ if (actionButtons.length) {
         }
 
         if (itemSelectors.length && selectedCount === 0) {
-          showFeedback('Сейчас не выбрана ни одна позиция. Выберите нужные пункты или используйте отказ.', 'danger');
+          showFeedback(feedback, 'Сейчас не выбрана ни одна позиция. Выберите нужные пункты или используйте отказ.', 'danger');
           return;
         }
 
         showFeedback(
+          feedback,
           'Спасибо. Согласование получено. В рабочей версии статус уйдёт сотруднику сервиса и в заказ-наряде зафиксируется решение.',
           'success'
         );
@@ -100,6 +103,7 @@ if (actionButtons.length) {
       if (action === 'decline') {
         if (questionPanel) questionPanel.hidden = true;
         showFeedback(
+          feedback,
           'Отказ зафиксирован. В рабочей версии система сохранит решение, отметит отказ по позициям и уведомит сотрудника.',
           'danger'
         );
@@ -109,6 +113,7 @@ if (actionButtons.length) {
         if (!questionPanel) return;
         questionPanel.hidden = false;
         showFeedback(
+          feedback,
           'Опишите вопрос — он будет передан сотруднику сервиса вместе с номером заказ-наряда.',
           'question'
         );
@@ -116,19 +121,36 @@ if (actionButtons.length) {
 
       if (action === 'cancel-question') {
         if (questionPanel) questionPanel.hidden = true;
-        showFeedback('Форма вопроса закрыта. Вы можете согласовать работы, выбрать часть позиций или отказаться.', 'question');
+        showFeedback(feedback, 'Форма вопроса закрыта. Вы можете согласовать работы, выбрать часть позиций или отказаться.', 'question');
       }
 
       if (action === 'submit-question') {
         const value = questionText ? questionText.value.trim() : '';
         if (!value) {
-          showFeedback('Введите вопрос или комментарий перед отправкой.', 'danger');
+          showFeedback(feedback, 'Введите вопрос или комментарий перед отправкой.', 'danger');
           return;
         }
 
         if (questionPanel) questionPanel.hidden = true;
         showFeedback(
+          feedback,
           'Вопрос отправлен. В рабочей версии сотрудник увидит его в админке и сможет ответить вам в Telegram или обновить смету.',
+          'question'
+        );
+      }
+
+      if (action === 'save-draft') {
+        showFeedback(
+          createFeedback,
+          'Черновик сохранён. В рабочей версии он попадёт в список согласований со статусом «черновик».',
+          'success'
+        );
+      }
+
+      if (action === 'send-preview') {
+        showFeedback(
+          createFeedback,
+          'Согласование создано. В рабочей версии система сформирует ссылку, сохранит карточку и отправит сообщение клиенту в Telegram.',
           'question'
         );
       }

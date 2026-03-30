@@ -134,7 +134,8 @@ h3 {
 
 .home-grid,
 .approval-layout,
-.admin-layout {
+.admin-layout,
+.create-layout {
   display: grid;
   gap: 20px;
 }
@@ -370,6 +371,62 @@ h3 {
   font-size: 0.95rem;
 }
 
+.form-grid,
+.builder-grid,
+.preview-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.builder-list {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.builder-row {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.builder-grid {
+  grid-template-columns: minmax(0, 2fr) minmax(120px, 0.8fr) minmax(140px, 1fr) 80px 110px;
+}
+
+.preview-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-bottom: 16px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+}
+
+.chip-active {
+  background: var(--primary-light);
+  border-color: rgba(255, 102, 0, 0.3);
+  color: #ffb17a;
+}
+
 .priority-box,
 .subcard {
   background: var(--panel);
@@ -420,6 +477,26 @@ h3 {
   color: var(--text-soft);
   font-size: 14px;
   font-weight: 600;
+}
+
+.input,
+.textarea,
+select.input {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #1d1d1d;
+  color: #fff;
+  font: inherit;
+}
+
+.input {
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+.input-select {
+  appearance: none;
 }
 
 .textarea {
@@ -592,6 +669,10 @@ h3 {
     width: 96px;
     min-width: 96px;
     font-size: 0.98rem;
+  }
+
+  .builder-grid {
+    grid-template-columns: 1fr;
   }
 
   .actions-row-mobile .button,

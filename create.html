@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Новое согласование — ГАГАРИНА 106</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="shell shell-create">
+      <header class="topbar topbar-compact">
+        <div>
+          <p class="eyebrow">Внутренняя форма</p>
+          <h1>Создание нового согласования</h1>
+        </div>
+        <a class="button button-ghost" href="./admin.html">← В админку</a>
+      </header>
+
+      <main class="create-layout">
+        <section class="card form-section">
+          <div class="section-head">
+            <h2>Данные заказ-наряда</h2>
+            <span class="muted">Шаг 1</span>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label class="field-label" for="order-number">Номер заказ-наряда</label>
+              <input id="order-number" class="input" type="text" value="1548" />
+            </div>
+            <div>
+              <label class="field-label" for="manager-name">Ответственный сотрудник</label>
+              <input id="manager-name" class="input" type="text" value="Андрей" />
+            </div>
+            <div>
+              <label class="field-label" for="client-name">Клиент</label>
+              <input id="client-name" class="input" type="text" value="Павел Покровский" />
+            </div>
+            <div>
+              <label class="field-label" for="client-phone">Телефон / Telegram</label>
+              <input id="client-phone" class="input" type="text" value="+7 911 477-51-06 / @pavelpokrovskiy" />
+            </div>
+            <div>
+              <label class="field-label" for="car-model">Автомобиль</label>
+              <input id="car-model" class="input" type="text" value="BMW X5" />
+            </div>
+            <div>
+              <label class="field-label" for="car-plate">Госномер</label>
+              <input id="car-plate" class="input" type="text" value="А123АА39" />
+            </div>
+            <div>
+              <label class="field-label" for="mileage">Пробег</label>
+              <input id="mileage" class="input" type="text" value="148 000 км" />
+            </div>
+            <div>
+              <label class="field-label" for="deadline">Срок ответа клиента</label>
+              <input id="deadline" class="input" type="text" value="сегодня до 18:00" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <div class="section-head">
+            <h2>Что обнаружили</h2>
+            <span class="muted">Шаг 2</span>
+          </div>
+
+          <label class="field-label" for="problem-description">Описание для клиента</label>
+          <textarea
+            id="problem-description"
+            class="textarea"
+            rows="5"
+            placeholder="Коротко и понятно опишите, что обнаружили и почему предлагаете эти работы."
+          >В ходе осмотра выявили износ передних тормозных дисков и колодок, а также запотевание правой передней стойки. По тормозам рекомендуем не откладывать: это влияет на эффективность торможения и безопасность. По стойке ремонт можно делать в этом визите, чтобы не возвращаться повторно.</textarea>
+        </section>
+
+        <section class="card form-section">
+          <div class="section-head">
+            <h2>Работы и запчасти</h2>
+            <span class="muted">Шаг 3</span>
+          </div>
+
+          <div class="builder-list">
+            <article class="builder-row">
+              <div class="builder-grid">
+                <input class="input" type="text" value="Замена передних тормозных дисков и колодок" />
+                <select class="input input-select">
+                  <option selected>Работа</option>
+                  <option>Запчасть</option>
+                </select>
+                <select class="input input-select">
+                  <option selected>Обязательно</option>
+                  <option>Рекомендуется</option>
+                  <option>Можно отложить</option>
+                </select>
+                <input class="input" type="text" value="1" />
+                <input class="input" type="text" value="3 000" />
+              </div>
+            </article>
+            <article class="builder-row">
+              <div class="builder-grid">
+                <input class="input" type="text" value="Тормозные диски передние" />
+                <select class="input input-select">
+                  <option>Работа</option>
+                  <option selected>Запчасть</option>
+                </select>
+                <select class="input input-select">
+                  <option selected>Обязательно</option>
+                  <option>Рекомендуется</option>
+                  <option>Можно отложить</option>
+                </select>
+                <input class="input" type="text" value="2" />
+                <input class="input" type="text" value="6 400" />
+              </div>
+            </article>
+            <article class="builder-row">
+              <div class="builder-grid">
+                <input class="input" type="text" value="Колодки тормозные передние" />
+                <select class="input input-select">
+                  <option>Работа</option>
+                  <option selected>Запчасть</option>
+                </select>
+                <select class="input input-select">
+                  <option selected>Обязательно</option>
+                  <option>Рекомендуется</option>
+                  <option>Можно отложить</option>
+                </select>
+                <input class="input" type="text" value="1" />
+                <input class="input" type="text" value="2 200" />
+              </div>
+            </article>
+            <article class="builder-row">
+              <div class="builder-grid">
+                <input class="input" type="text" value="Замена передней правой стойки" />
+                <select class="input input-select">
+                  <option selected>Работа</option>
+                  <option>Запчасть</option>
+                </select>
+                <select class="input input-select">
+                  <option>Обязательно</option>
+                  <option selected>Рекомендуется</option>
+                  <option>Можно отложить</option>
+                </select>
+                <input class="input" type="text" value="1" />
+                <input class="input" type="text" value="1 500" />
+              </div>
+            </article>
+            <article class="builder-row">
+              <div class="builder-grid">
+                <input class="input" type="text" value="Стойка передняя правая" />
+                <select class="input input-select">
+                  <option>Работа</option>
+                  <option selected>Запчасть</option>
+                </select>
+                <select class="input input-select">
+                  <option>Обязательно</option>
+                  <option selected>Рекомендуется</option>
+                  <option>Можно отложить</option>
+                </select>
+                <input class="input" type="text" value="1" />
+                <input class="input" type="text" value="1 000" />
+              </div>
+            </article>
+          </div>
+
+          <div class="actions-stack actions-row-mobile">
+            <button class="button button-secondary" type="button">+ Добавить позицию</button>
+            <button class="button button-ghost" type="button">+ Добавить фото</button>
+          </div>
+        </section>
+
+        <section class="card form-section form-preview-card">
+          <div class="section-head">
+            <h2>Черновик отправки</h2>
+            <span class="muted">Шаг 4</span>
+          </div>
+
+          <div class="preview-grid">
+            <div class="subcard">
+              <h3>Канал отправки</h3>
+              <div class="chip-row">
+                <span class="chip chip-active">Telegram</span>
+                <span class="chip">WhatsApp</span>
+                <span class="chip">SMS</span>
+              </div>
+            </div>
+
+            <div class="subcard subcard-accent">
+              <h3>Итог по смете</h3>
+              <div class="summary-grid">
+                <div>
+                  <span class="summary-label">Работы</span>
+                  <strong>4 500 ₽</strong>
+                </div>
+                <div>
+                  <span class="summary-label">Запчасти</span>
+                  <strong>9 600 ₽</strong>
+                </div>
+                <div>
+                  <span class="summary-label">Итого</span>
+                  <strong>14 100 ₽</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <label class="field-label" for="message-template">Текст сообщения клиенту</label>
+          <textarea
+            id="message-template"
+            class="textarea"
+            rows="5"
+          >Павел, добрый день. По вашему автомобилю подготовили дополнительную смету по заказ-наряду №1548. Посмотрите работы, запчасти и итоговую стоимость по ссылке. Там можно сразу согласовать, задать вопрос или отказаться.</textarea>
+
+          <div class="actions-stack actions-row-mobile">
+            <button class="button button-primary" data-action="save-draft">Сохранить черновик</button>
+            <a class="button button-secondary" href="./approval.html">Открыть клиентскую страницу</a>
+            <button class="button button-ghost" data-action="send-preview">Создать и отправить</button>
+          </div>
+
+          <div id="create-feedback" class="feedback" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
