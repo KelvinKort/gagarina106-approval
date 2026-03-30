@@ -400,6 +400,17 @@ h3 {
   grid-template-columns: minmax(0, 2fr) minmax(120px, 0.8fr) minmax(140px, 1fr) 80px 110px;
 }
 
+.builder-grid-head {
+  margin-bottom: 10px;
+}
+
+.builder-head {
+  color: var(--text-soft);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .preview-grid {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   margin-bottom: 16px;
@@ -693,6 +704,10 @@ select.input {
 
   .builder-grid {
     grid-template-columns: 1fr;
+  }
+
+  .builder-grid-head {
+    display: none;
   }
 
   .actions-row-mobile .button,

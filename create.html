@@ -120,83 +120,90 @@
 
           <div class="builder-list" id="builder-list">
             <article class="builder-row">
-              <div class="builder-grid">
-                <input class="input" type="text" value="Замена передних тормозных дисков и колодок" />
-                <select class="input input-select">
+              <div class="builder-grid builder-grid-head">
+                <span class="builder-head">Позиция</span>
+                <span class="builder-head">Тип</span>
+                <span class="builder-head">Приоритет</span>
+                <span class="builder-head">Кол-во</span>
+                <span class="builder-head">Сумма</span>
+              </div>
+              <div class="builder-grid builder-grid-row">
+                <input class="input js-item-title" type="text" value="Замена передних тормозных дисков и колодок" />
+                <select class="input input-select js-item-type">
                   <option selected>Работа</option>
                   <option>Запчасть</option>
                 </select>
-                <select class="input input-select">
+                <select class="input input-select js-item-priority">
                   <option selected>Обязательно</option>
                   <option>Рекомендуется</option>
                   <option>Можно отложить</option>
                 </select>
-                <input class="input" type="text" value="1" />
-                <input class="input" type="text" value="3 000" />
+                <input class="input js-item-qty" type="number" min="1" step="1" value="1" />
+                <input class="input js-item-total" type="text" value="3000" />
               </div>
             </article>
             <article class="builder-row">
-              <div class="builder-grid">
-                <input class="input" type="text" value="Тормозные диски передние" />
-                <select class="input input-select">
+              <div class="builder-grid builder-grid-row">
+                <input class="input js-item-title" type="text" value="Тормозные диски передние" />
+                <select class="input input-select js-item-type">
                   <option>Работа</option>
                   <option selected>Запчасть</option>
                 </select>
-                <select class="input input-select">
+                <select class="input input-select js-item-priority">
                   <option selected>Обязательно</option>
                   <option>Рекомендуется</option>
                   <option>Можно отложить</option>
                 </select>
-                <input class="input" type="text" value="2" />
-                <input class="input" type="text" value="6 400" />
+                <input class="input js-item-qty" type="number" min="1" step="1" value="2" />
+                <input class="input js-item-total" type="text" value="6400" />
               </div>
             </article>
             <article class="builder-row">
-              <div class="builder-grid">
-                <input class="input" type="text" value="Колодки тормозные передние" />
-                <select class="input input-select">
+              <div class="builder-grid builder-grid-row">
+                <input class="input js-item-title" type="text" value="Колодки тормозные передние" />
+                <select class="input input-select js-item-type">
                   <option>Работа</option>
                   <option selected>Запчасть</option>
                 </select>
-                <select class="input input-select">
+                <select class="input input-select js-item-priority">
                   <option selected>Обязательно</option>
                   <option>Рекомендуется</option>
                   <option>Можно отложить</option>
                 </select>
-                <input class="input" type="text" value="1" />
-                <input class="input" type="text" value="2 200" />
+                <input class="input js-item-qty" type="number" min="1" step="1" value="1" />
+                <input class="input js-item-total" type="text" value="2200" />
               </div>
             </article>
             <article class="builder-row">
-              <div class="builder-grid">
-                <input class="input" type="text" value="Замена передней правой стойки" />
-                <select class="input input-select">
+              <div class="builder-grid builder-grid-row">
+                <input class="input js-item-title" type="text" value="Замена передней правой стойки" />
+                <select class="input input-select js-item-type">
                   <option selected>Работа</option>
                   <option>Запчасть</option>
                 </select>
-                <select class="input input-select">
+                <select class="input input-select js-item-priority">
                   <option>Обязательно</option>
                   <option selected>Рекомендуется</option>
                   <option>Можно отложить</option>
                 </select>
-                <input class="input" type="text" value="1" />
-                <input class="input" type="text" value="1 500" />
+                <input class="input js-item-qty" type="number" min="1" step="1" value="1" />
+                <input class="input js-item-total" type="text" value="1500" />
               </div>
             </article>
             <article class="builder-row">
-              <div class="builder-grid">
-                <input class="input" type="text" value="Стойка передняя правая" />
-                <select class="input input-select">
+              <div class="builder-grid builder-grid-row">
+                <input class="input js-item-title" type="text" value="Стойка передняя правая" />
+                <select class="input input-select js-item-type">
                   <option>Работа</option>
                   <option selected>Запчасть</option>
                 </select>
-                <select class="input input-select">
+                <select class="input input-select js-item-priority">
                   <option>Обязательно</option>
                   <option selected>Рекомендуется</option>
                   <option>Можно отложить</option>
                 </select>
-                <input class="input" type="text" value="1" />
-                <input class="input" type="text" value="1 000" />
+                <input class="input js-item-qty" type="number" min="1" step="1" value="1" />
+                <input class="input js-item-total" type="text" value="1000" />
               </div>
             </article>
           </div>
@@ -241,15 +248,15 @@
               <div class="summary-grid">
                 <div>
                   <span class="summary-label">Работы</span>
-                  <strong>4 500 ₽</strong>
+                  <strong id="create-labor-total">4 500 ₽</strong>
                 </div>
                 <div>
                   <span class="summary-label">Запчасти</span>
-                  <strong>9 600 ₽</strong>
+                  <strong id="create-parts-total">9 600 ₽</strong>
                 </div>
                 <div>
                   <span class="summary-label">Итого</span>
-                  <strong>14 100 ₽</strong>
+                  <strong id="create-grand-total">14 100 ₽</strong>
                 </div>
               </div>
             </div>

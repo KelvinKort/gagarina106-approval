@@ -12,8 +12,13 @@ const partialNote = document.getElementById('partial-note');
 const channelInputs = document.querySelectorAll('input[name="delivery-channel"]');
 const messageTemplate = document.getElementById('message-template');
 const channelNote = document.getElementById('channel-note');
+const createLaborTotal = document.getElementById('create-labor-total');
+const createPartsTotal = document.getElementById('create-parts-total');
+const createGrandTotal = document.getElementById('create-grand-total');
+const builderRows = document.querySelectorAll('.builder-row');
 
 const formatPrice = (value) => `${new Intl.NumberFormat('ru-RU').format(value)} ₽`;
+const parseNumber = (value) => Number(String(value).replace(/\s+/g, '').replace(',', '.')) || 0;
 
 const showFeedback = (node, text, className) => {
   if (!node) return;
@@ -21,15 +26,22 @@ const showFeedback = (node, text, className) => {
   node.className = `feedback ${className}`;
 };
 
-const channelMessages = {
-  telegram:
-    'Павел, добрый день. По вашему автомобилю подготовили дополнительную смету по заказ-наряду №1548. Посмотрите работы, запчасти и итоговую стоимость по ссылке. Там можно сразу согласовать, задать вопрос или отказаться.',
-  whatsapp:
-    'Павел, добрый день. Подготовили дополнительную смету по вашему автомобилю. Направляем ссылку для просмотра и согласования работ и запчастей. Если удобно, можете сразу ответить после просмотра.',
-  sms:
-    'ГАГАРИНА 106: по вашему авто подготовили доп. смету по заказ-наряду №1548. Откройте ссылку для просмотра и согласования.',
-  phone:
-    'Клиенту будет озвучена смета по телефону. После звонка сотрудник вручную зафиксирует результат согласования и комментарий клиента.'
+const getActiveChannel = () => [...channelInputs].find((input) => input.checked)?.value || 'telegram';
+
+const buildMessageText = ({ channel, clientName, orderNumber, carModel, laborTotal, partsTotal, grandTotal }) => {
+  if (channel === 'phone') {
+    return `Клиент ${clientName} будет согласован по телефону по заказ-наряду ${orderNumber}. Сотруднику нужно озвучить автомобиль ${carModel}, работы на ${formatPrice(laborTotal)}, запчасти на ${formatPrice(partsTotal)} и общий итог ${formatPrice(grandTotal)}, затем вручную зафиксировать решение.`;
+  }
+
+  if (channel === 'sms') {
+    return `ГАГАРИНА 106: по ${carModel} подготовили доп. смету по заказ-наряду ${orderNumber}. Работы ${formatPrice(laborTotal)}, запчасти ${formatPrice(partsTotal)}, итого ${formatPrice(grandTotal)}. Откройте ссылку для просмотра и согласования.`;
+  }
+
+  if (channel === 'whatsapp') {
+    return `${clientName}, добрый день. По ${carModel} подготовили дополнительную смету по заказ-наряду ${orderNumber}. Работы на ${formatPrice(laborTotal)}, запчасти на ${formatPrice(partsTotal)}, общий итог ${formatPrice(grandTotal)}. Отправляем ссылку для просмотра и согласования.`;
+  }
+
+  return `${clientName}, добрый день. По вашему автомобилю ${carModel} подготовили дополнительную смету по заказ-наряду ${orderNumber}. Работы на ${formatPrice(laborTotal)}, запчасти на ${formatPrice(partsTotal)}, итоговая стоимость ${formatPrice(grandTotal)}. Посмотрите, пожалуйста, всё по ссылке — там можно сразу согласовать, задать вопрос или отказаться.`;
 };
 
 const channelNotes = {
@@ -52,22 +64,56 @@ const alphaDemoData = {
     'Из Альфа-Авто подтянут заказ-наряд и автомобиль. В ходе осмотра дополнительно выявили износ передних тормозных дисков и колодок, а также запотевание правой передней стойки. По тормозам рекомендуем не откладывать, по стойке можно согласовать перенос на следующий визит.'
 };
 
+const updateCreateTotalsAndMessage = () => {
+  if (!builderRows.length) return;
+
+  let labor = 0;
+  let parts = 0;
+
+  builderRows.forEach((row) => {
+    const type = row.querySelector('.js-item-type')?.value;
+    const total = parseNumber(row.querySelector('.js-item-total')?.value || 0);
+
+    if (type === 'Работа') labor += total;
+    if (type === 'Запчасть') parts += total;
+  });
+
+  const grandTotal = labor + parts;
+
+  if (createLaborTotal) createLaborTotal.textContent = formatPrice(labor);
+  if (createPartsTotal) createPartsTotal.textContent = formatPrice(parts);
+  if (createGrandTotal) createGrandTotal.textContent = formatPrice(grandTotal);
+
+  if (messageTemplate) {
+    const clientName = document.getElementById('client-name')?.value || 'Клиент';
+    const orderNumber = document.getElementById('order-number')?.value || '—';
+    const carModel = document.getElementById('car-model')?.value || 'автомобиль';
+    messageTemplate.value = buildMessageText({
+      channel: getActiveChannel(),
+      clientName,
+      orderNumber,
+      carModel,
+      laborTotal: labor,
+      partsTotal: parts,
+      grandTotal
+    });
+  }
+};
+
 const updateChannelPreview = () => {
   if (!channelInputs.length) return;
 
-  const active = [...channelInputs].find((input) => input.checked)?.value || 'telegram';
+  const active = getActiveChannel();
 
   channelInputs.forEach((input) => {
     input.closest('.channel-option')?.classList.toggle('channel-option-active', input.checked);
   });
 
-  if (messageTemplate) {
-    messageTemplate.value = channelMessages[active];
-  }
-
   if (channelNote) {
     channelNote.textContent = channelNotes[active];
   }
+
+  updateCreateTotalsAndMessage();
 };
 
 const populateAlphaDemo = () => {
@@ -136,6 +182,22 @@ const updateSelectableState = () => {
     partialNote.textContent = `Выбрана часть позиций. Новый итог: ${formatPrice(total)}.`;
   }
 };
+
+if (builderRows.length) {
+  builderRows.forEach((row) => {
+    row.querySelectorAll('.input, .input-select').forEach((field) => {
+      field.addEventListener('input', updateCreateTotalsAndMessage);
+      field.addEventListener('change', updateCreateTotalsAndMessage);
+    });
+  });
+
+  ['client-name', 'order-number', 'car-model'].forEach((id) => {
+    const node = document.getElementById(id);
+    node?.addEventListener('input', updateCreateTotalsAndMessage);
+  });
+
+  updateCreateTotalsAndMessage();
+}
 
 if (channelInputs.length) {
   channelInputs.forEach((input) => {
@@ -231,7 +293,7 @@ if (actionButtons.length) {
       }
 
       if (action === 'send-preview') {
-        const active = [...channelInputs].find((input) => input.checked)?.value || 'telegram';
+        const active = getActiveChannel();
         const text =
           active === 'phone'
             ? 'Карточка создана для согласования по телефону. В рабочей версии сотрудник позвонит клиенту и вручную зафиксирует результат разговора.'
