@@ -267,10 +267,12 @@ h3 {
 }
 
 .line-item strong {
-  flex: 0 0 auto;
-  min-width: 92px;
+  flex: 0 0 108px;
+  width: 108px;
+  min-width: 108px;
   text-align: right;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .line-item > div:first-child {
@@ -523,7 +525,9 @@ h3 {
   }
 
   .line-item strong {
-    min-width: 84px;
+    flex-basis: 96px;
+    width: 96px;
+    min-width: 96px;
     font-size: 0.98rem;
   }
 
